@@ -25,10 +25,21 @@
     component: './Welcome',
   },
   {
-    name: 'list.articles-list',
+    name: 'articles',
     icon: 'table',
-    path: '/articles/dashboard',
-    component: './Articles',
+    routes: [
+      {
+        path: '/articles/dashboard',
+        name: 'dashboard',
+        component: './Articles',
+      },
+      {
+        path: '/articles/create',
+        name: 'create',
+        hideInMenu: true,
+        component: './Articles/create',
+      },
+    ],
   },
   {
     path: '/admin',

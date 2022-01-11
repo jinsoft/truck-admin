@@ -61,7 +61,7 @@ const TableList: React.FC = () => {
         }}
         columns={columns as ProColumns<API.RuleListItem, 'text'>[]}
         toolBarRender={() => [
-          <Button type="primary" key="primary">
+          <Button type="primary" key="primary" href="/articles/create">
             <PlusOutlined /> 添加
           </Button>,
         ]}
