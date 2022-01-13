@@ -2,6 +2,23 @@
 /* eslint-disable */
 
 declare namespace API {
+  type ArticleItem = {
+    id: number;
+    name: string;
+    picture: number;
+    words: number;
+    link: number;
+    created_at: string;
+    view: number;
+  };
+
+  type ArticleList = {
+    data?: ArticleItem[];
+    /** 列表的内容总数 */
+    total?: number;
+    success?: boolean;
+  };
+
   type CurrentUser = {
     name?: string;
     avatar?: string;

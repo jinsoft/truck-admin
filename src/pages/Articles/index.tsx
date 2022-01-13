@@ -1,21 +1,12 @@
+import { article } from '@/services/ant-design-pro/api';
 import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import { Button } from 'antd';
 import React, { useRef } from 'react';
+import { Link } from 'umi';
 
-type ArticleItem = {
-  id: number;
-  name: string;
-  picture: number;
-  words: number;
-  link: number;
-  created_at: string;
-  view: number;
-};
-
-const columns: ProColumns<ArticleItem>[] = [
+const columns: ProColumns<API.ArticleItem>[] = [
   {
     title: '区域',
     dataIndex: 'name',
@@ -45,6 +36,24 @@ const columns: ProColumns<ArticleItem>[] = [
     dataIndex: 'view',
     hideInSearch: true,
     sorter: true,
+    render: (_, record) => <span>{record.view} 次</span>,
+  },
+  {
+    title: '操作',
+    valueType: 'option',
+    render: (text, record, _, action) => [
+      <a
+        key="editable"
+        onClick={() => {
+          action?.startEditable?.(record.id);
+        }}
+      >
+        编辑
+      </a>,
+      <a href="/article/{record.id}" target="_blank" rel="noopener noreferrer" key="view">
+        查看
+      </a>,
+    ],
   },
 ];
 
@@ -60,10 +69,12 @@ const TableList: React.FC = () => {
           labelWidth: 120,
         }}
         columns={columns as ProColumns<API.RuleListItem, 'text'>[]}
+        request={article}
         toolBarRender={() => [
-          <Button type="primary" key="primary" href="/articles/create">
+          // eslint-disable-next-line react/jsx-key
+          <Link to={'/articles/create'}>
             <PlusOutlined /> 添加
-          </Button>,
+          </Link>,
         ]}
       />
     </PageContainer>
