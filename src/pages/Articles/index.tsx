@@ -3,7 +3,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-layout';
 import type { ActionType, ProColumns } from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'umi';
 
 const columns: ProColumns<API.ArticleItem>[] = [
@@ -59,6 +59,7 @@ const columns: ProColumns<API.ArticleItem>[] = [
 
 const TableList: React.FC = () => {
   const actionRef = useRef<ActionType>();
+  const [visible, setVisible] = useState(false);
   return (
     <PageContainer>
       <ProTable<API.RuleListItem, API.PageParams>
